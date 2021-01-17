@@ -24,9 +24,8 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Build de imagem e Push no Azure Container Registry
+    - name: Build de imagem e Push no DockerHub
       run: |
-        cd ./SiteConsumoAPINasa
         docker build . --file Dockerfile --tag ${{ env.IMAGEM_DOCKERHUB }}:latest
         docker tag ${{ env.IMAGEM_DOCKERHUB }}:latest ${{ env.IMAGEM_DOCKERHUB }}:$GITHUB_RUN_NUMBER
         docker push ${{ env.IMAGEM_DOCKERHUB }}
